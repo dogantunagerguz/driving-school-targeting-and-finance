@@ -1,5 +1,12 @@
 # Driving School Targeting and Financial Report
 
+| | |
+|---|---|
+| **Business impact** | Converts historic trainee records into a targeted licence-upgrade call list and unifies income and expense analysis. |
+| **Tools** | Power BI, Power Query, DAX, Excel/VBA |
+| **Status** | In operational use; source data remains private; attribution limitations are documented. |
+
+
 **TL;DR:** A Power BI report for a driving school. It identifies past trainees who are eligible for commercial licence classes from their existing records and turns them into a call list. The same report brings together separately kept income and expense data to calculate the cost per trainee.
 
 ## Context
