@@ -1,0 +1,171 @@
+table 'Gelir Listesi'
+	lineageTag: 12f701cb-70f2-4a38-ba03-1eae996119d4
+
+	measure 'Normal Gelir' =
+			CALCULATE(
+			    SUM('Gelir Listesi'[TUTAR]),
+			    CROSSFILTER('Aday Numara Köprüsü'[ADAY NO], 'Gelir Listesi'[ADAY NO], None)
+			)
+		formatString: 0
+		lineageTag: f25ad7b6-9bb3-47e3-9e15-801f97bbfc0a
+
+	measure 'Toplam Gelir' = [Normal Gelir] + [Toplam Diğer Gelir]
+		formatString: "₺"#,0.00;-"₺"#,0.00;"₺"#,0.00
+		lineageTag: d21c56fd-5f18-4c2c-aac2-214d28565913
+
+		annotation PBI_FormatHint = {"currencyCulture":"tr-TR"}
+
+	measure 'Net Kar' = [Toplam Gelir] - [Toplam Gider]
+		formatString: "₺"#,0.00;-"₺"#,0.00;"₺"#,0.00
+		lineageTag: 835ca908-e1bf-4dbe-a47c-8f9d341b2fe3
+
+		annotation PBI_FormatHint = {"currencyCulture":"tr-TR"}
+
+	measure 'Yıl Başı Gelir' = TOTALYTD( [Toplam Gelir], 'Takvim'[Date] )
+		lineageTag: 70a11d5c-643e-4d88-aa21-f36e44e462a6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Yıl Başı Gider' = TOTALYTD( [Toplam Gider], 'Takvim'[Date] )
+		lineageTag: bd728844-baf9-4d88-b5ea-b16aec781aeb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Yıl Başı Kar' = TOTALYTD( [Net Kar], 'Takvim'[Date] )
+		lineageTag: f604d572-b175-4355-9229-908abb494787
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tahsilat Geliri' =
+			
+			CALCULATE(
+			    SUM('Gelir Listesi'[TUTAR]),
+			    KEEPFILTERS('Takvim'),
+			    'Kursiyer Listesi'[Sertifika]
+			)
+		formatString: "₺"#,0;-"₺"#,0;"₺"#,0
+		lineageTag: b8046966-b856-4451-b093-ad990e149ef7
+
+		annotation PBI_FormatHint = {"currencyCulture":"tr-TR"}
+
+	column SN
+		dataType: int64
+		formatString: 0
+		lineageTag: 9abf745e-e174-4d3b-b0be-0980e67cd05d
+		summarizeBy: sum
+		sourceColumn: SN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MAKBUZ NO'
+		dataType: int64
+		formatString: 0
+		lineageTag: cfd7fe0f-abf7-47fc-bda8-aa4f36d9149e
+		summarizeBy: sum
+		sourceColumn: MAKBUZ NO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TAHSİLAT TARİHİ'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 24522b96-a9c3-496c-8940-cd030e5af4f6
+		summarizeBy: none
+		sourceColumn: TAHSİLAT TARİHİ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'ADAY NO'
+		dataType: int64
+		formatString: 0
+		lineageTag: ca2b8ed4-6e51-421d-a9f8-e5e0b4113779
+		summarizeBy: none
+		sourceColumn: ADAY NO
+
+		annotation SummarizationSetBy = Automatic
+
+	column GRUBU
+		dataType: string
+		lineageTag: 1fde7246-fc42-4321-9b72-c1a65bd03653
+		summarizeBy: none
+		sourceColumn: GRUBU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ADI SOYADI'
+		dataType: string
+		lineageTag: 7611c102-6876-453c-9461-eb680389acc3
+		summarizeBy: none
+		sourceColumn: ADI SOYADI
+
+		annotation SummarizationSetBy = Automatic
+
+	column TUTAR
+		dataType: int64
+		formatString: 0
+		lineageTag: 11d1e8c3-7553-4578-acdc-1b68001b7baf
+		summarizeBy: sum
+		sourceColumn: TUTAR
+
+		annotation SummarizationSetBy = Automatic
+
+	column Yıl
+		dataType: int64
+		formatString: 0
+		lineageTag: b4c35c0f-0ea0-4535-8a29-b92bbd099bf1
+		summarizeBy: sum
+		sourceColumn: Yıl
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ay
+		dataType: int64
+		formatString: 0
+		lineageTag: 1ffe5af7-dc36-4f47-bd72-e26d142ffdb2
+		summarizeBy: sum
+		sourceColumn: Ay
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Grup Numarası'
+		dataType: int64
+		formatString: 0
+		lineageTag: b80e7120-e8e5-44c9-81bb-156ddca86137
+		summarizeBy: sum
+		sourceColumn: Grup Numarası
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sanal Tarih'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: ff388ab4-1153-4af1-af0a-6eebefedc9d1
+		summarizeBy: count
+		sourceColumn: Sanal Tarih
+
+		variation Variation
+			isDefault
+			relationship: 67b0e1db-a33d-4ebd-a624-fa396f944aa4
+			defaultHierarchy: LocalDateTable_e2ce75dd-0fba-4523-8029-51899061f9be.'Date Hierarchy'
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'Gelir Listesi' = m
+		mode: import
+		source =
+				let
+				    Source = #"Ana-Gelir Listesi",
+				    #"Added Custom" = Table.AddColumn(Source, "Custom", each #date([Yıl], [Ay], 1)),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"Custom", type date}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Custom", "Sanal Tarih"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,234 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "b8653b8a73458ac0c00b",
+  "position": {
+    "x": 0,
+    "y": 39.536679536679536,
+    "z": 1000,
+    "height": 683.24324324324323,
+    "width": 994.5945945945947,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Kursiyer Listesi"
+                    }
+                  },
+                  "Property": "GRUBU"
+                }
+              },
+              "queryRef": "Kursiyer Listesi.GRUBU",
+              "nativeQueryRef": "Cohort/Group",
+              "displayName": "Cohort/Group"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Kursiyer Listesi"
+                    }
+                  },
+                  "Property": "Sertifika"
+                }
+              },
+              "queryRef": "Kursiyer Listesi.Sertifika",
+              "nativeQueryRef": "License Class",
+              "displayName": "License Class"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Kursiyer Listesi"
+                    }
+                  },
+                  "Property": "ADI"
+                }
+              },
+              "queryRef": "Kursiyer Listesi.ADI",
+              "nativeQueryRef": "Name",
+              "displayName": "Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Genel Sınav ve Borç Listesi"
+                    }
+                  },
+                  "Property": "Sertifika aldı mı?"
+                }
+              },
+              "queryRef": "Genel Sınav ve Borç Listesi.Sertifika aldı mı?",
+              "nativeQueryRef": "Certified?",
+              "displayName": "Certified?"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Kursiyer Listesi"
+                    }
+                  },
+                  "Property": "Yaş"
+                }
+              },
+              "queryRef": "Sum(Kursiyer Listesi.Yaş)",
+              "nativeQueryRef": "Age",
+              "displayName": "Age"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Kursiyer Listesi"
+                    }
+                  },
+                  "Property": "ADAY NO"
+                }
+              },
+              "queryRef": "Kursiyer Listesi.ADAY NO",
+              "nativeQueryRef": "Candidate Number",
+              "displayName": "Candidate Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Kursiyer Listesi"
+                    }
+                  },
+                  "Property": "1. TEL"
+                }
+              },
+              "queryRef": "Kursiyer Listesi.1. TEL",
+              "nativeQueryRef": "Telephone 1",
+              "displayName": "Telephone 1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Kursiyer Listesi"
+                    }
+                  },
+                  "Property": "2. TEL"
+                }
+              },
+              "queryRef": "Kursiyer Listesi.2. TEL",
+              "nativeQueryRef": "Telephone 2",
+              "displayName": "Telephone 2"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Kursiyer Listesi"
+                    }
+                  },
+                  "Property": "Pazarlama Segmenti"
+                }
+              },
+              "queryRef": "Kursiyer Listesi.Pazarlama Segmenti",
+              "nativeQueryRef": "Marketing Segment",
+              "displayName": "Marketing Segment"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Genel Sınav ve Borç Listesi"
+                  }
+                },
+                "Property": "Sertifika aldı mı?"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "78.82239519255444D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Kursiyer Listesi.Sertifika"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'AlternatingRowsNew'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Detay Tablosu'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

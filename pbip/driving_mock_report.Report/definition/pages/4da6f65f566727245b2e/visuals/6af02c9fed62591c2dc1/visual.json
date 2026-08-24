@@ -1,0 +1,156 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "6af02c9fed62591c2dc1",
+  "position": {
+    "x": 21.25,
+    "y": 273.75,
+    "z": 4000,
+    "height": 423.75,
+    "width": 588.75,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "areaChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Takvim"
+                    }
+                  },
+                  "Property": "Ay Adı"
+                }
+              },
+              "queryRef": "Takvim.Ay Adı",
+              "nativeQueryRef": "Ay Adı",
+              "active": true
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Gelir Listesi"
+                    }
+                  },
+                  "Property": "Tahsilat Geliri"
+                }
+              },
+              "queryRef": "Gelir Listesi.Tahsilat Geliri",
+              "nativeQueryRef": "Tahsilat Geliri"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Diğer Gelirler"
+                    }
+                  },
+                  "Property": "Toplam Diğer Gelir"
+                }
+              },
+              "queryRef": "Diğer Gelirler.Toplam Diğer Gelir",
+              "nativeQueryRef": "Toplam Diğer Gelir"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Gelir Listesi"
+                    }
+                  },
+                  "Property": "Toplam Gelir"
+                }
+              },
+              "queryRef": "Gelir Listesi.Toplam Gelir",
+              "nativeQueryRef": "Total Revenue",
+              "displayName": "Total Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Gider Listesi"
+                    }
+                  },
+                  "Property": "Toplam Gider"
+                }
+              },
+              "queryRef": "Gider Listesi.Toplam Gider",
+              "nativeQueryRef": "Total Expense",
+              "displayName": "Total Expense"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Revenue vs. Expense Trend'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

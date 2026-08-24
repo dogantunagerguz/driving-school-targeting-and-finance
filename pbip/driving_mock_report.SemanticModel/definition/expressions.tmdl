@@ -1,0 +1,84 @@
+expression 'Ana-Gider Listesi' =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\dogan\OneDrive\Masaüstü\Power BI Project\driving_mock\Gider Listesi.xlsx"), null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SN", Int64.Type}, {"TARİH", type date}, {"EVRAK NO", Int64.Type}, {"HESAP NO", type number}, {"İŞLEM AÇIKLAMASI", type text}, {"TUTAR", type number}}),
+		    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"HESAP NO"})
+		in
+		    #"Removed Columns"
+	lineageTag: 9d2e644a-c58d-47d6-aee1-3a5bd86a7c12
+	queryGroup: 'Ham Veri'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Ana-Genel Sınav ve Borç Listesi' =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\dogan\OneDrive\Masaüstü\Power BI Project\driving_mock\Kursiyer Genel Sınav ve Borç Listesi.xlsx"), null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SN", Int64.Type}, {"ADAY NO", Int64.Type}, {"GRUBU", type text}, {"ADI SOYADI", type text}, {"TOPLAM BORÇ", Int64.Type}, {"ÖDENEN", type number}, {"KALAN", type number}, {"SINAV HARÇ TOPLAMI", type number}, {"ÖDENEN SINAV", type number}, {"KALAN_1", type number}, {"SERTİFİKA VERİLİŞ TARİHİ", type any}}),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type",{{"SERTİFİKA VERİLİŞ TARİHİ", type date}}),
+		    #"Added Custom1" = Table.AddColumn(#"Changed Type1", "Sanal Grup Tarihi", each #date([Yıl],[Ay],1)),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom1",{{"Sanal Grup Tarihi", type date}}),
+		    #"Added Custom" = Table.AddColumn(#"Changed Type2", "Sertifika Sonrası Geçen Süre", each Duration.Days(DateTime.Date(DateTime.FixedLocalNow()) - [Sanal Grup Tarihi])),
+		    #"Added Conditional Column" = Table.AddColumn(#"Added Custom", "Sertifika aldı mı?", each if [SERTİFİKA VERİLİŞ TARİHİ] = null then "Not Certified" else if [SERTİFİKA VERİLİŞ TARİHİ] = 30121899 then "Not Certified" else if [SERTİFİKA VERİLİŞ TARİHİ] = "" then "Not Certified" else if [SERTİFİKA VERİLİŞ TARİHİ] = "" then "Not Certified" else "Certified")
+		in
+		    #"Added Conditional Column"
+	lineageTag: f424e285-b627-455d-99f8-4561f53ac96d
+	queryGroup: 'Ham Veri'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Ana-Gelir Listesi' =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\dogan\OneDrive\Masaüstü\Power BI Project\driving_mock\Gelir Listesi.xlsx"), null, true),
+		    Sayfa1_Sheet = Source{[Item="Sayfa1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sayfa1_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SN", Int64.Type}, {"MAKBUZ NO", Int64.Type}, {"TAHSİLAT TARİHİ", type date}, {"ADAY NO", Int64.Type}, {"GRUBU", type text}, {"ADI SOYADI", type text}, {"TUTAR", Int64.Type}, {"TC NO", Int64.Type}, {"Yıl", Int64.Type}, {"Ay", Int64.Type}, {"Grup Numarası", Int64.Type}}),
+		    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"TC NO"})
+		in
+		    #"Removed Columns"
+	lineageTag: d920ada3-91aa-4506-866f-1aac66410003
+	queryGroup: 'Ham Veri'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Ana-Diğer Gelirler' =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\dogan\OneDrive\Masaüstü\Power BI Project\driving_mock\Diğer Gelirler.xlsx"), null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SN", Int64.Type}, {"TARİH", type date}, {"EVRAK NO", Int64.Type}, {"HESAP NO", Int64.Type}, {"İŞLEM AÇIKLAMASI", type text}, {"TUTAR", type number}}),
+		    #"Replaced Value" = Table.ReplaceValue(#"Changed Type",null,0,Replacer.ReplaceValue,{"EVRAK NO"}),
+		    #"Removed Columns" = Table.RemoveColumns(#"Replaced Value",{"HESAP NO"})
+		in
+		    #"Removed Columns"
+	lineageTag: d85c6413-fdd2-4c82-825e-5419867bd5a6
+	queryGroup: 'Ham Veri'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Ana-Kursiyer Listesi' =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\dogan\OneDrive\Masaüstü\Power BI Project\driving_mock\Yıllık Kursiyer Listesi.xlsx"), null, true),
+		    Sayfa1_Sheet = Source{[Item="Sayfa1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sayfa1_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SN.", Int64.Type}, {"ADAY NO", Int64.Type}, {"ADI", type text}, {"SOYADI", type text}, {"Cinsiyet", type text}, {"GRUBU", type text}, {"ÖĞRENİM DURUMU", type text}, {"D.TARİHİ", type date}, {"S.SIN.", type text}, {"Yıl", Int64.Type}, {"Ay", Int64.Type}, {"Grup Numarası", Int64.Type}})
+		in
+		    #"Changed Type"
+	lineageTag: 5f82d871-7487-49d1-8cd6-1d7505a157be
+	queryGroup: 'Ham Veri'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,460 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "23451f00343a94a3b5ec",
+  "position": {
+    "x": 0,
+    "y": 38.3011583011583,
+    "z": 0,
+    "height": 682.007722007722,
+    "width": 1280,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "decompositionTreeVisual",
+    "query": {
+      "queryState": {
+        "Analyze": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Kursiyer Listesi"
+                        }
+                      },
+                      "Property": "ADAY NO"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "CountNonNull(Kursiyer Listesi.ADAY NO)",
+              "nativeQueryRef": "Number of Trainees",
+              "displayName": "Number of Trainees"
+            }
+          ]
+        },
+        "ExplainBy": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Kursiyer Listesi"
+                    }
+                  },
+                  "Property": "Pazarlama Segmenti"
+                }
+              },
+              "queryRef": "Kursiyer Listesi.Pazarlama Segmenti",
+              "nativeQueryRef": "Segmentation",
+              "active": true,
+              "displayName": "Segmentation"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Kursiyer Listesi"
+                    }
+                  },
+                  "Property": "Yıl"
+                }
+              },
+              "queryRef": "Kursiyer Listesi.Yıl",
+              "nativeQueryRef": "Year",
+              "active": true,
+              "displayName": "Year"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Kursiyer Listesi"
+                    }
+                  },
+                  "Property": "Yaş (bins)"
+                }
+              },
+              "queryRef": "Kursiyer Listesi.Yaş (bins)",
+              "nativeQueryRef": "Age (bins)",
+              "active": true,
+              "displayName": "Age (bins)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Kursiyer Listesi"
+                    }
+                  },
+                  "Property": "Ay"
+                }
+              },
+              "queryRef": "Kursiyer Listesi.Ay",
+              "nativeQueryRef": "Month",
+              "active": false,
+              "displayName": "Month"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Kursiyer Listesi"
+                      }
+                    },
+                    "Property": "ADAY NO"
+                  }
+                },
+                "Function": 5
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "ExplainBy"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "Kursiyer Listesi.Pazarlama Segmenti"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Kursiyer Listesi"
+                    }
+                  },
+                  "Property": "Pazarlama Segmenti"
+                }
+              }
+            ],
+            "isPinned": true,
+            "isLocked": true
+          },
+          {
+            "queryRefs": [
+              "Kursiyer Listesi.Yıl"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Kursiyer Listesi"
+                    }
+                  },
+                  "Property": "Yıl"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Kursiyer Listesi.Yaş (bins)"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Kursiyer Listesi"
+                    }
+                  },
+                  "Property": "Yaş (bins)"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Kursiyer Listesi.Ay"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Kursiyer Listesi"
+                    }
+                  },
+                  "Property": "Ay"
+                }
+              }
+            ]
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'C-D Potential'"
+                  }
+                }
+              ],
+              "isToggled": true,
+              "children": [
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "2022L"
+                      }
+                    }
+                  ],
+                  "isToggled": true
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "objects": {
+      "tree": [
+        {
+          "properties": {
+            "effectiveBarsPerLevel": {
+              "expr": {
+                "Literal": {
+                  "Value": "7L"
+                }
+              }
+            },
+            "density": {
+              "expr": {
+                "Literal": {
+                  "Value": "'sparse'"
+                }
+              }
+            },
+            "defaultClickAction": {
+              "expr": {
+                "Literal": {
+                  "Value": "'select'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "insights": [
+        {
+          "properties": {
+            "isAINode": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Kursiyer Listesi"
+                          }
+                        },
+                        "Property": "Pazarlama Segmenti"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'C-D Potansiyeli'"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Kursiyer Listesi"
+                          }
+                        },
+                        "Property": "ADAY NO"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "19519L"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "dd181eb80d0dbeeb574c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Kursiyer Listesi"
+              }
+            },
+            "Property": "Pazarlama Segmenti"
+          }
+        },
+        "type": "Categorical",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "843b6e66ed4632bb0cec",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Kursiyer Listesi"
+              }
+            },
+            "Property": "Yaş"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "6be963d7841450bc2b5c",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Kursiyer Listesi"
+                  }
+                },
+                "Property": "ADAY NO"
+              }
+            },
+            "Function": 5
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2464ef5f609bec7bc205",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Kursiyer Listesi"
+              }
+            },
+            "Property": "Yaş (bins)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "244dcace0a578154d609",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Kursiyer Listesi"
+              }
+            },
+            "Property": "Yıl"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a5025e5e063060a05192",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Kursiyer Listesi"
+              }
+            },
+            "Property": "Ay"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

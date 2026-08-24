@@ -1,0 +1,113 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 27.481996371158449,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 58.026387560090029,
+            "y": 632.38831891786208
+          },
+          "nodeIndex": "Diğer Gelirler",
+          "nodeLineageTag": "0802aefe-ce82-4020-b1a5-b610c2fd2ca0",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 942.96941412267245,
+            "y": 167.71064452142849
+          },
+          "nodeIndex": "Gelir Listesi",
+          "nodeLineageTag": "12f701cb-70f2-4a38-ba03-1eae996119d4",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 346.36528374997516,
+            "y": 0
+          },
+          "nodeIndex": "Genel Sınav ve Borç Listesi",
+          "nodeLineageTag": "33a9eb1d-366b-4680-b59e-b430ee47109d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 698.19560783286181,
+            "y": 614.70653812655166
+          },
+          "nodeIndex": "Gider Listesi",
+          "nodeLineageTag": "616e18e9-353d-41f2-914d-ce4362a07340",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 19.294246954970589,
+            "y": 85.439493553190232
+          },
+          "nodeIndex": "Kursiyer Listesi",
+          "nodeLineageTag": "67b73c6b-19d6-4ab2-b143-72b6cab077c9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 359.37480243333073,
+            "y": 440.52725731478222
+          },
+          "nodeIndex": "Takvim",
+          "nodeLineageTag": "ceac7807-e4b6-40a9-8762-32ea4707ec47",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 711.70811074777146,
+            "y": 0
+          },
+          "nodeIndex": "Aday Numara Köprüsü",
+          "nodeLineageTag": "b3b10a8a-f6f2-40d9-abb8-efb281cd2ba3",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 70.955543900968848,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

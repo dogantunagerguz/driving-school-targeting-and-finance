@@ -1,0 +1,300 @@
+table 'Kursiyer Listesi'
+	lineageTag: 67b73c6b-19d6-4ab2-b143-72b6cab077c9
+
+	measure 'Geçen Dönem Aday Sayısı' = CALCULATE(DISTINCTCOUNT('Kursiyer Listesi'[ADAY NO]),PREVIOUSMONTH(Takvim[Date].[Date]))
+		formatString: 0
+		lineageTag: 7ecdb105-a49e-4654-a8be-c3fa59fe033f
+
+	measure 'Aday Sayısı' = DISTINCTCOUNT('Kursiyer Listesi'[ADAY NO])
+		formatString: 0
+		lineageTag: 8abddd5f-13b8-4600-8579-c665c1af2ddb
+
+	measure 'Seçili Tarihteki Toplam Aday' = ```
+			
+			CALCULATE(
+			    [Aday Sayısı], 
+			    REMOVEFILTERS('Kursiyer Listesi'[Certificate (groups)])
+			)
+			```
+		formatString: 0
+		lineageTag: 07dd4170-b9fa-4598-9cfa-d97c14e6612b
+
+	column 'SN.'
+		dataType: int64
+		formatString: 0
+		lineageTag: b5f673c5-d3a6-4f26-996c-ef5a4b706f52
+		summarizeBy: sum
+		sourceColumn: SN.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ADAY NO'
+		dataType: int64
+		formatString: 0
+		lineageTag: 679e9160-13aa-4a73-b963-2dbe3dc1c5e3
+		summarizeBy: none
+		sourceColumn: ADAY NO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADI
+		dataType: string
+		lineageTag: 5358b22f-c25b-4007-ba05-1aac0950e420
+		summarizeBy: none
+		sourceColumn: ADI
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOYADI
+		dataType: string
+		lineageTag: 8f8267f3-8983-45cc-a93b-1411f65a6bab
+		summarizeBy: none
+		sourceColumn: SOYADI
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cinsiyet
+		dataType: string
+		lineageTag: d25b68fb-b4b1-4b24-a85f-104c235fc596
+		summarizeBy: none
+		sourceColumn: Cinsiyet
+
+		annotation SummarizationSetBy = Automatic
+
+	column GRUBU
+		dataType: string
+		lineageTag: b3a300c6-147a-481e-8757-d1c4e0ecaaf0
+		summarizeBy: none
+		sourceColumn: GRUBU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ÖĞRENİM DURUMU'
+		dataType: string
+		lineageTag: 902403a5-38b7-4fe4-bcf5-1f9218241b5f
+		summarizeBy: none
+		sourceColumn: ÖĞRENİM DURUMU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'D.TARİHİ'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: eff05929-88b9-4d1a-9f9b-b1a98348231d
+		summarizeBy: none
+		sourceColumn: D.TARİHİ
+
+		variation Variation
+			isDefault
+			relationship: 0e97253b-8cf6-481b-ad16-4467d0a2a553
+			defaultHierarchy: LocalDateTable_17efc1b5-20b5-48d1-8f0a-e4eb626eb071.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Sertifika
+		dataType: string
+		lineageTag: 71a1e563-c4f6-489f-8195-b46261cbf599
+		summarizeBy: none
+		sourceColumn: Sertifika
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Kursiyer Listesi","TableItemName":"Certificate (groups)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column Yıl
+		dataType: int64
+		formatString: 0
+		lineageTag: bce0c5b2-6389-4262-82b2-94bdff7bcfaf
+		summarizeBy: none
+		sourceColumn: Yıl
+
+		annotation SummarizationSetBy = User
+
+	column Ay
+		dataType: int64
+		formatString: 0
+		lineageTag: 10fad0ee-6c96-4bd3-afb0-dae71a91a39f
+		summarizeBy: sum
+		sourceColumn: Ay
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Grup Numarası'
+		dataType: int64
+		formatString: 0
+		lineageTag: 642dbdfd-6743-4997-a85a-c9e64f33ed5c
+		summarizeBy: none
+		sourceColumn: Grup Numarası
+
+		annotation SummarizationSetBy = User
+
+	column 'Sanal Tarih'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a861065f-fd9f-418f-b163-794c426e60d3
+		summarizeBy: none
+		sourceColumn: Sanal Tarih
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Certificate (groups)' =
+			SWITCH(
+				TRUE,
+				ISBLANK('Kursiyer Listesi'[Sertifika]),
+				"(Blank)",
+				'Kursiyer Listesi'[Sertifika] IN {"A1",
+					"A1 Otomatik"},
+				"A1 Group",
+				'Kursiyer Listesi'[Sertifika] IN {"B",
+					"B Otomatik"},
+				"B Group",
+				'Kursiyer Listesi'[Sertifika] IN {"C",
+					"CE"},
+				"C Group",
+				'Kursiyer Listesi'[Sertifika]
+			)
+		lineageTag: 2efc33ab-1234-4f35-ab38-d1426dcd0c89
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Kursiyer Listesi"
+				          }
+				        },
+				        "Property": "Sertifika"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"k","Entity":"Kursiyer Listesi"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"k"}},"Property":"Sertifika"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"A1 Group","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"k"}},"Property":"Sertifika"}}],"Values":[[{"Literal":{"Value":"'A1'"}}],[{"Literal":{"Value":"'A1 Otomatik'"}}]]}}},{"DisplayName":"B Group","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"k"}},"Property":"Sertifika"}}],"Values":[[{"Literal":{"Value":"'B'"}}],[{"Literal":{"Value":"'B Otomatik'"}}]]}}},{"DisplayName":"C Group","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"k"}},"Property":"Sertifika"}}],"Values":[[{"Literal":{"Value":"'C'"}}],[{"Literal":{"Value":"'CE'"}}]]}}}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	column Yaş = DATEDIFF('Kursiyer Listesi'[D.TARİHİ].[Date],TODAY(),YEAR)
+		formatString: 0
+		lineageTag: 72527445-201a-4487-bc40-8cf9147db27a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Kursiyer Listesi","TableItemName":"Yaş (bins)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'Pazarlama Segmenti' = ```
+			
+			VAR MevcutYas = [Yaş]
+			VAR ErkekMi = [Cinsiyet] = "E"
+			VAR EgitimUygunMu = [ÖĞRENİM DURUMU] IN { "İlkokul", "Ortaokul", "Lise","İlköğretim","Mesleki-Teknik Lise","Yetişkinler 2.Kademe","Yüksekokul" }
+			VAR B_var_mi = 'Kursiyer Listesi'[Sertifika] = "B"
+			VAR A1_var_mi = 'Kursiyer Listesi'[Sertifika] IN { "A1", "A1 Otomatik" }
+			VAR A2_var_mi = 'Kursiyer Listesi'[Sertifika] = "A2"
+			VAR C_var_mi = 'Kursiyer Listesi'[Sertifika] = "C"
+			RETURN
+			
+			SWITCH(
+			    TRUE(),
+			    -- Şart 1: Hem erkek, hem eğitimi uygun, hem de 21-23 yaş arası
+			    ErkekMi && EgitimUygunMu && B_var_mi && MevcutYas >= 21 && MevcutYas <= 23, 
+			        "Only C Potential",
+			
+			    -- Şart 2: Hem erkek, hem eğitimi uygun, hem de 24 yaş ve üstü
+			    ErkekMi && EgitimUygunMu && B_var_mi && MevcutYas >= 24, 
+			        "C-D Potential",
+			
+			    A1_var_mi && MevcutYas >= 17,
+			        "B Potential",
+			
+			    A2_var_mi && MevcutYas >=20,
+			        "A Potential",
+			        
+			    ErkekMi && EgitimUygunMu && C_var_mi && MevcutYas >= 24,
+			        "CE Potential",
+			        
+			    -- Diğer tüm durumlar
+			    "Out of Scope"
+			)
+			```
+		lineageTag: 118207e7-3e4f-4ccb-93b6-59d9442d2058
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Yaş (bins)' =
+			IF(
+				ISBLANK('Kursiyer Listesi'[Yaş]),
+				BLANK(),
+				INT('Kursiyer Listesi'[Yaş] / 10) * 10
+			)
+		formatString: 0
+		lineageTag: 3255d7ca-d53b-44cf-9563-18ae980e161e
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Kursiyer Listesi"
+				          }
+				        },
+				        "Property": "Yaş"
+				      }
+				    }
+				  ],
+				  "binningMetadata": {
+				    "binSize": {
+				      "value": 10.0,
+				      "unit": 0
+				    }
+				  }
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"k","Entity":"Kursiyer Listesi"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"k"}},"Property":"Yaş"}}],"BinItem":{"Expression":{"Floor":{"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"k"}},"Property":"Yaş"}},"Size":10.0}}}}
+
+		annotation SummarizationSetBy = Automatic
+
+	column '1. TEL'
+		dataType: string
+		lineageTag: 4ba42db0-5d7a-47c6-afde-4602620fdf8f
+		summarizeBy: none
+		sourceColumn: 1. TEL
+
+		annotation SummarizationSetBy = Automatic
+
+	column '2. TEL'
+		dataType: string
+		lineageTag: 8332946c-7424-4dc2-961b-6ef7049ad616
+		summarizeBy: none
+		sourceColumn: 2. TEL
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Kursiyer Listesi' = m
+		mode: import
+		source =
+				let
+				    Source = #"Ana-Kursiyer Listesi",
+				    #"Added Custom" = Table.AddColumn(Source, "Custom", each #date([Yıl], [Ay], 1)),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Custom",{{"Custom", "Sanal Tarih"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Sanal Tarih", type date}}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Changed Type",{{"S.SIN.", "Sertifika"}})
+				in
+				    #"Renamed Columns1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

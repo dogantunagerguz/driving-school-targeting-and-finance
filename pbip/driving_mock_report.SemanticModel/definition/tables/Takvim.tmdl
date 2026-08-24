@@ -1,0 +1,99 @@
+table Takvim
+	lineageTag: ceac7807-e4b6-40a9-8762-32ea4707ec47
+
+	column Date
+		formatString: Short Date
+		lineageTag: 0b6075d5-7606-4c0c-9a68-5b9168e2bcc9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: ad7d44af-1b98-491d-b054-ea2a9f2210d4
+			defaultHierarchy: LocalDateTable_107d038a-8c66-459e-b37c-2aa6c7bdd6af.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Yıl
+		formatString: 0
+		lineageTag: e8e25127-5aba-4b6a-ab42-045097b71758
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Yıl]
+
+		annotation SummarizationSetBy = User
+
+	column 'Ay No'
+		formatString: 0
+		lineageTag: 2e780df9-5f51-43a2-a4ef-aa7fca474d33
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Ay No]
+
+		annotation SummarizationSetBy = User
+
+	column 'Ay Adı'
+		lineageTag: 5b1531fe-d1b9-45f6-95cd-11165b648af8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Ay Adı]
+		sortByColumn: 'Ay No'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Çeyrek
+		lineageTag: d471ed8c-d57d-4f00-8a44-885d6100582b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Çeyrek]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Hafta No'
+		formatString: 0
+		lineageTag: d22a4242-869a-446e-9403-a711019624ed
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Hafta No]
+
+		annotation SummarizationSetBy = User
+
+	column 'Gün Adı'
+		lineageTag: 2e2bd553-d383-4efc-8026-9de9c89b534d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Gün Adı]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YılAy
+		lineageTag: 2273593f-7385-470d-89c9-d73c0575d9c3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YılAy]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Takvim = calculated
+		mode: import
+		source =
+				
+				VAR BaslangicYili = 2020
+				VAR BitisYili = 2027
+				RETURN
+				ADDCOLUMNS (
+				    CALENDAR ( DATE ( BaslangicYili, 1, 1 ), DATE ( BitisYili, 12, 31 ) ),
+				    "Yıl", YEAR ( [Date] ),
+				    "Ay No", MONTH ( [Date] ),
+				    "Ay Adı", FORMAT ( [Date], "MMMM", "en-US" ),
+				    "Çeyrek", "Q" & FORMAT ( [Date], "Q" ),
+				    "Hafta No", WEEKNUM ( [Date] ),
+				    "Gün Adı", FORMAT ( [Date], "dddd", "en-US" ),
+				    "YılAy", FORMAT ( [Date], "YYYY-MM" )
+				)
+
+	annotation PBI_Id = c3daac38ba7b4f6086393701f2407a7a
+

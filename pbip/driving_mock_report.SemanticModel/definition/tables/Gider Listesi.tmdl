@@ -1,0 +1,104 @@
+table 'Gider Listesi'
+	lineageTag: 616e18e9-353d-41f2-914d-ce4362a07340
+
+	measure 'Toplam Gider' = SUM('Gider Listesi'[TUTAR])
+		formatString: "₺"#,0.00;-"₺"#,0.00;"₺"#,0.00
+		lineageTag: 91002d06-73f7-4b0b-9798-563c28ebe611
+
+		annotation PBI_FormatHint = {"currencyCulture":"tr-TR"}
+
+	measure 'Kursiyer Basına Maaliyet' = DIVIDE([Toplam Gider],DISTINCTCOUNT('Kursiyer Listesi'[ADAY NO]),0)
+		lineageTag: 155051b5-02ed-414e-aff4-abb44916ea6c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Gecen Ay Maliyet/kursiyer' = ```
+			
+			CALCULATE(
+			    [Kursiyer Basına Maaliyet], 
+			    DATEADD(Takvim[Date],-1,MONTH))
+			```
+		formatString: 0
+		lineageTag: 45bb8462-bf26-4a78-8cfe-7c18cfca0e88
+
+	column SN
+		dataType: int64
+		formatString: 0
+		lineageTag: 03bca676-0b46-4069-be46-7d8993da0e64
+		summarizeBy: sum
+		sourceColumn: SN
+
+		annotation SummarizationSetBy = Automatic
+
+	column TARİH
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: efbc17d7-7e53-4aa8-bbcb-f70d3764bf04
+		summarizeBy: none
+		sourceColumn: TARİH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'EVRAK NO'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7b40aa02-59e7-4849-afc1-820c6a60f884
+		summarizeBy: sum
+		sourceColumn: EVRAK NO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'İŞLEM AÇIKLAMASI'
+		dataType: string
+		lineageTag: ca9ae9d7-7108-4843-a98e-d753c05f1c82
+		summarizeBy: none
+		sourceColumn: İŞLEM AÇIKLAMASI
+
+		annotation SummarizationSetBy = Automatic
+
+	column TUTAR
+		dataType: double
+		lineageTag: 4085f760-c67c-46be-9b25-8b3b6f8b889e
+		summarizeBy: sum
+		sourceColumn: TUTAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Expense Category'
+		dataType: string
+		lineageTag: 8c31a918-089c-43fc-8222-6e5c694a2ea9
+		summarizeBy: none
+		sourceColumn: Expense Category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Gider Listesi' = m
+		mode: import
+		source =
+				let
+				    Source = #"Ana-Gider Listesi",
+				    #"Replaced Value" = Table.ReplaceValue(Source,"KASGO","KASKO",Replacer.ReplaceText,{"İŞLEM AÇIKLAMASI"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","MUHLELİF","MUHTELİF",Replacer.ReplaceText,{"İŞLEM AÇIKLAMASI"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","AXSESS","AXESS",Replacer.ReplaceText,{"İŞLEM AÇIKLAMASI"}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value2","MUAYEN-","MUAYENE-",Replacer.ReplaceText,{"İŞLEM AÇIKLAMASI"}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value3","ÜÇRETİ","ÜCRETİ",Replacer.ReplaceText,{"İŞLEM AÇIKLAMASI"}),
+				    #"Added Custom" = Table.AddColumn(#"Replaced Value4", "Expense Category", each if Text.Contains([İŞLEM AÇIKLAMASI], "YAKIT") then "Fuel Expenses"
+				else if Text.Contains([İŞLEM AÇIKLAMASI], "PLAKA") or Text.Contains([İŞLEM AÇIKLAMASI], "KASKO") or Text.Contains([İŞLEM AÇIKLAMASI], "SİGORTA") or Text.Contains([İŞLEM AÇIKLAMASI], "MUAYENE") or Text.Contains([İŞLEM AÇIKLAMASI], "LASTİK") or Text.Contains([İŞLEM AÇIKLAMASI], "ARAÇ BAKIM") or Text.Contains([İŞLEM AÇIKLAMASI], "OTOPARK") or Text.Contains([İŞLEM AÇIKLAMASI], "RUHSAT") then "Vehicle Maintenance and Operating Expenses"
+				else if Text.Contains([İŞLEM AÇIKLAMASI], "PERSONEL (SÜRÜCÜ KURSU)") or Text.Contains([İŞLEM AÇIKLAMASI], "SSK") or Text.Contains([İŞLEM AÇIKLAMASI], "ÜCRET") or Text.Contains([İŞLEM AÇIKLAMASI], "GİYİM") then "Personnel and HR Expenses"
+				else if Text.Contains([İŞLEM AÇIKLAMASI], "YEMEK(PERSONEL)") or Text.Contains([İŞLEM AÇIKLAMASI], "ÇAY") or Text.Contains([İŞLEM AÇIKLAMASI], "KAHVE") or Text.Contains([İŞLEM AÇIKLAMASI], "İÇECEK") or Text.Contains([İŞLEM AÇIKLAMASI], "SALEP") or Text.Contains([İŞLEM AÇIKLAMASI], "SU") or Text.Contains([İŞLEM AÇIKLAMASI], "İKRAM") then "Kitchen and Hospitality Expenses"
+				else if Text.Contains([İŞLEM AÇIKLAMASI], "BANKA") or Text.Contains([İŞLEM AÇIKLAMASI], "AKPOST") or Text.Contains([İŞLEM AÇIKLAMASI], "AXESS") or Text.Contains([İŞLEM AÇIKLAMASI], "AKBANK") or Text.Contains([İŞLEM AÇIKLAMASI], "İŞBANKASI") or Text.Contains([İŞLEM AÇIKLAMASI], "ZİRAAT") or Text.Contains([İŞLEM AÇIKLAMASI], "T.FİNANS") then "Finance and Commission Expenses"
+				else if Text.Contains([İŞLEM AÇIKLAMASI], "KİRA") or Text.Contains([İŞLEM AÇIKLAMASI], "HARÇ") or Text.Contains([İŞLEM AÇIKLAMASI], "ISITMA") or Text.Contains([İŞLEM AÇIKLAMASI], "SERTİFİKA") or Text.Contains([İŞLEM AÇIKLAMASI], "MİLLİ EĞİTİM") then "Government and Fixed Expenses"
+				else if Text.Contains([İŞLEM AÇIKLAMASI], "KİTAP") or Text.Contains([İŞLEM AÇIKLAMASI], "TEST") or Text.Contains([İŞLEM AÇIKLAMASI], "SORU BANKASI") or Text.Contains([İŞLEM AÇIKLAMASI], "RAPOR") or Text.Contains([İŞLEM AÇIKLAMASI], "KIRTASİYE") then "Education and Materials Expenses"
+				else if Text.Contains([İŞLEM AÇIKLAMASI], "DEMİRBAŞ") or Text.Contains([İŞLEM AÇIKLAMASI], "MUHTELİF") or Text.Contains([İŞLEM AÇIKLAMASI], "SÜNGER") or Text.Contains([İŞLEM AÇIKLAMASI], "ANAHTAR") or Text.Contains([İŞLEM AÇIKLAMASI], "KÜREK") then "Fixtures and Miscellaneous Expenses"
+				else "Other Expenses")
+				in
+				    #"Added Custom"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

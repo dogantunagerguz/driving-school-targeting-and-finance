@@ -1,0 +1,26 @@
+table 'Aday Numara Köprüsü'
+	lineageTag: b3b10a8a-f6f2-40d9-abb8-efb281cd2ba3
+
+	column 'ADAY NO'
+		dataType: int64
+		formatString: 0
+		lineageTag: 800aaa07-3bcf-467d-b547-2e7abf1bbcfd
+		summarizeBy: count
+		sourceColumn: ADAY NO
+
+		annotation SummarizationSetBy = User
+
+	partition 'Aday Numara Köprüsü' = m
+		mode: import
+		source =
+				let
+				    Source = #"Ana-Genel Sınav ve Borç Listesi",
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"ADAY NO"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

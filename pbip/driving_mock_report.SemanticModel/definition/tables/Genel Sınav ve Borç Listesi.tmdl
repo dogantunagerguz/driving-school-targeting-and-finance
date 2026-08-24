@@ -1,0 +1,257 @@
+table 'Genel Sınav ve Borç Listesi'
+	lineageTag: 33a9eb1d-366b-4680-b59e-b430ee47109d
+
+	measure 'Garantili Aday Sayısı' = ```
+			
+			CALCULATE(
+			    [Aday Sayısı], 
+			    CROSSFILTER('Kursiyer Listesi'[ADAY NO],'Genel Sınav ve Borç Listesi'[ADAY NO],Both)
+			)
+			```
+		formatString: 0
+		lineageTag: 678eeb8b-cf8d-494f-8a0e-af839c9e3dc4
+
+		changedProperty = IsHidden
+
+	measure 'ÖY Sertifika Alamayan Kişi Sayısı' =
+			
+			CALCULATE(
+			    COUNT('Genel Sınav ve Borç Listesi'[Sertifika aldı mı?]),
+			    'Genel Sınav ve Borç Listesi'[Sertifika aldı mı?] = "Almadı",
+			    DATEADD('Takvim'[Date],-1,MONTH)
+			)
+		formatString: 0
+		lineageTag: eb108a08-cf7a-4744-9f15-37e224780b76
+
+		changedProperty = IsHidden
+
+	measure 'Sertifika Alamayan Kişi Sayısı' =
+			
+			CALCULATE(
+			    COUNT('Genel Sınav ve Borç Listesi'[Sertifika aldı mı?]),
+			    'Genel Sınav ve Borç Listesi'[Sertifika aldı mı?] = "Not Certified"
+			)
+		formatString: 0
+		lineageTag: 210d4490-7065-4131-a071-3f1e9b716863
+
+		changedProperty = IsHidden
+
+	measure 'Sertifika Alan' =
+			CALCULATE( DISTINCTCOUNT('Genel Sınav ve Borç Listesi'[ADAY NO]),
+			'Genel Sınav ve Borç Listesi'[Sertifika aldı mı?] = "Certified")
+		formatString: 0
+		lineageTag: 29c860a5-e829-4e98-927d-8134f0ef2f5e
+
+		changedProperty = IsHidden
+
+	column SN
+		dataType: int64
+		formatString: 0
+		lineageTag: 35750ead-e3ca-40db-b7e1-14a33c410842
+		summarizeBy: sum
+		sourceColumn: SN
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ADAY NO'
+		dataType: int64
+		formatString: 0
+		lineageTag: d1c6c8d8-d6fa-43ed-a2bc-fec555147338
+		summarizeBy: none
+		sourceColumn: ADAY NO
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column GRUBU
+		dataType: string
+		lineageTag: 85f94f51-4585-4798-aecc-976ba7ef69c9
+		summarizeBy: none
+		sourceColumn: GRUBU
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ADI SOYADI'
+		dataType: string
+		lineageTag: baf4295a-9506-48e9-a93d-9eed6039a13a
+		summarizeBy: none
+		sourceColumn: ADI SOYADI
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TOPLAM BORÇ'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9b4d39a6-59fe-4e9c-b9ca-0c5dd0fd340e
+		summarizeBy: sum
+		sourceColumn: TOPLAM BORÇ
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ÖDENEN
+		dataType: double
+		lineageTag: 3d55016c-7fab-445f-a78a-45ccadc5c7aa
+		summarizeBy: sum
+		sourceColumn: ÖDENEN
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KALAN
+		dataType: double
+		lineageTag: b173e0b5-45c7-4375-b4f7-199f3bd4358c
+		summarizeBy: sum
+		sourceColumn: KALAN
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'SINAV HARÇ TOPLAMI'
+		dataType: double
+		lineageTag: 19f6477a-9c07-4285-b1d1-3bd0a4f2c796
+		summarizeBy: sum
+		sourceColumn: SINAV HARÇ TOPLAMI
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'ÖDENEN SINAV'
+		dataType: double
+		lineageTag: 383ae5d5-c977-435d-b62e-98ab4e613c4f
+		summarizeBy: sum
+		sourceColumn: ÖDENEN SINAV
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KALAN_1
+		dataType: double
+		lineageTag: 198d7b4f-6572-45dc-8c3e-5080bfc28617
+		summarizeBy: sum
+		sourceColumn: KALAN_1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'SERTİFİKA VERİLİŞ TARİHİ'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: d0b26e0c-d18c-4bc3-8be1-244a18f6634f
+		summarizeBy: none
+		sourceColumn: SERTİFİKA VERİLİŞ TARİHİ
+
+		variation Variation
+			isDefault
+			relationship: b58e386f-bfd5-4435-83e4-c3a2ccc56c63
+			defaultHierarchy: LocalDateTable_0d703d05-6c3a-49d1-b60f-27d466448612.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Grup Numarası'
+		dataType: string
+		lineageTag: 5b0b5d76-c36f-45ee-ba9b-06d0e2f3a47c
+		summarizeBy: none
+		sourceColumn: Grup Numarası
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Yıl
+		dataType: string
+		lineageTag: 4903625f-9d56-4202-bd09-2b423f4798ec
+		summarizeBy: none
+		sourceColumn: Yıl
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ay
+		dataType: string
+		lineageTag: 9870deda-3afd-441c-b971-31ebddd4d2c6
+		summarizeBy: none
+		sourceColumn: Ay
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sanal Grup Tarihi'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: f9a25b2e-591e-4e49-81ec-f16b83b3fe8c
+		summarizeBy: none
+		sourceColumn: Sanal Grup Tarihi
+
+		variation Variation
+			isDefault
+			relationship: cd08531f-3856-4012-8c74-616eb90f9ed3
+			defaultHierarchy: LocalDateTable_310e2a03-645f-4803-8d68-b00ddee87304.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Sertifika Sonrası Geçen Süre'
+		dataType: string
+		lineageTag: bf7dc922-ae8e-4cda-8f41-18ea54e0c900
+		summarizeBy: none
+		sourceColumn: Sertifika Sonrası Geçen Süre
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sertifika aldı mı?'
+		dataType: string
+		lineageTag: bf7ee4d6-45c7-40c0-aeb9-939ac9368480
+		summarizeBy: none
+		sourceColumn: Sertifika aldı mı?
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Genel Sınav ve Borç Listesi' = m
+		mode: import
+		source =
+				let
+				    Source = #"Ana-Genel Sınav ve Borç Listesi"
+				in
+				    Source
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

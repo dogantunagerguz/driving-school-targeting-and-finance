@@ -1,0 +1,53 @@
+relationship 67b0e1db-a33d-4ebd-a624-fa396f944aa4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Gelir Listesi'.'Sanal Tarih'
+	toColumn: LocalDateTable_e2ce75dd-0fba-4523-8029-51899061f9be.Date
+
+relationship 0e97253b-8cf6-481b-ad16-4467d0a2a553
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Kursiyer Listesi'.'D.TARİHİ'
+	toColumn: LocalDateTable_17efc1b5-20b5-48d1-8f0a-e4eb626eb071.Date
+
+relationship AutoDetected_26e1bdc5-671a-4b0b-b1e6-ae5851b62e55
+	fromColumn: 'Genel Sınav ve Borç Listesi'.'ADAY NO'
+	toColumn: 'Kursiyer Listesi'.'ADAY NO'
+
+relationship db970650-7557-d654-d5c3-d89e98103cbe
+	fromColumn: 'Gelir Listesi'.'ADAY NO'
+	toColumn: 'Aday Numara Köprüsü'.'ADAY NO'
+
+relationship 0e9909b2-11ec-6f1b-209d-48ba82a96113
+	fromColumn: 'Genel Sınav ve Borç Listesi'.'ADAY NO'
+	toColumn: 'Aday Numara Köprüsü'.'ADAY NO'
+
+relationship b58e386f-bfd5-4435-83e4-c3a2ccc56c63
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Genel Sınav ve Borç Listesi'.'SERTİFİKA VERİLİŞ TARİHİ'
+	toColumn: LocalDateTable_0d703d05-6c3a-49d1-b60f-27d466448612.Date
+
+relationship cd08531f-3856-4012-8c74-616eb90f9ed3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Genel Sınav ve Borç Listesi'.'Sanal Grup Tarihi'
+	toColumn: LocalDateTable_310e2a03-645f-4803-8d68-b00ddee87304.Date
+
+relationship ad7d44af-1b98-491d-b054-ea2a9f2210d4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Takvim.Date
+	toColumn: LocalDateTable_107d038a-8c66-459e-b37c-2aa6c7bdd6af.Date
+
+relationship 5ae30023-0896-d3b9-39b9-705b8b0db677
+	fromColumn: 'Kursiyer Listesi'.'Sanal Tarih'
+	toColumn: Takvim.Date
+
+relationship 6473f3eb-b5f7-3c13-24c6-076e52a6c112
+	fromColumn: 'Gider Listesi'.TARİH
+	toColumn: Takvim.Date
+
+relationship b24152ce-00cf-b9b3-dc63-43880111826f
+	fromColumn: 'Gelir Listesi'.'TAHSİLAT TARİHİ'
+	toColumn: Takvim.Date
+
+relationship 133ffb5f-0412-e7ee-0061-a098b9f090b7
+	fromColumn: 'Diğer Gelirler'.TARİH
+	toColumn: Takvim.Date
+

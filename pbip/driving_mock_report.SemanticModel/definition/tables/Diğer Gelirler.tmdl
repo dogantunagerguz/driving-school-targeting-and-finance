@@ -1,0 +1,70 @@
+table 'Diğer Gelirler'
+	lineageTag: 0802aefe-ce82-4020-b1a5-b610c2fd2ca0
+
+	measure 'Toplam Diğer Gelir' = SUM('Diğer Gelirler'[TUTAR])
+		formatString: "₺"#,0.00;-"₺"#,0.00;"₺"#,0.00
+		lineageTag: 8514fad1-6c06-4799-ab7c-ae93854fad22
+
+		annotation PBI_FormatHint = {"currencyCulture":"tr-TR"}
+
+	column SN
+		dataType: int64
+		formatString: 0
+		lineageTag: 185037c6-e93f-4e08-97b8-4d5d4e87448f
+		summarizeBy: sum
+		sourceColumn: SN
+
+		annotation SummarizationSetBy = Automatic
+
+	column TARİH
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5e6711d4-02ec-4e56-b739-4caf499f901e
+		summarizeBy: none
+		sourceColumn: TARİH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'EVRAK NO'
+		dataType: double
+		lineageTag: 1e38fb41-8b86-48f0-9041-304590fbb868
+		summarizeBy: sum
+		sourceColumn: EVRAK NO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'İŞLEM AÇIKLAMASI'
+		dataType: string
+		lineageTag: f415ee1a-b792-4447-95bb-6ccca4b5ca80
+		summarizeBy: none
+		sourceColumn: İŞLEM AÇIKLAMASI
+
+		annotation SummarizationSetBy = Automatic
+
+	column TUTAR
+		dataType: double
+		lineageTag: 48e7a6b0-b4eb-4031-b5f0-80a3fc3123a7
+		summarizeBy: sum
+		sourceColumn: TUTAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Diğer Gelirler' = m
+		mode: import
+		source =
+				let
+				    Source = #"Ana-Diğer Gelirler",
+				    #"Replaced Value" = Table.ReplaceValue(Source,"KASGO","KASKO",Replacer.ReplaceText,{"İŞLEM AÇIKLAMASI"})
+				in
+				    #"Replaced Value"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
