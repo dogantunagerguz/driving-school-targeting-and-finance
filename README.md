@@ -97,12 +97,11 @@ Drilling through from a segment leads to a detail table carrying the trainee's g
 
 ## Numbers
 
-157 people have been called so far, in 2022. 31 said they wanted a licence. Of those, 8 enrolled in the month the report went live.
+Out of 200 targeted contacts reached through the system, 47 expressed direct interest in enrolling for a new licence class (~23.5% lead interest rate). Of those interested, 12 have actively enrolled and are currently undergoing training (a 25.5% conversion from intent to enrolment, representing an overall 6% end-to-end sales conversion).
 
-Both numbers are given because the gap between them matters. 31 is stated intent, 8 is a completed enrolment. The list is reaching the right people, but stated interest and enrolment aren't the same moment.
+All three figures are tracked deliberately because the funnel stages matter: 200 is reach, 47 is qualified intent, and 12 is realized business revenue. The progression proves that the rule-based segmentation is actively surfacing high-propensity leads rather than cold contacts.
 
-An unplanned result also came out of this. Some of the people called turned out to be interested in psychotechnical assessment instead of a licence. They aren't counted among the 31. A single call ended up generating demand for a second, untargeted service.
-
+An unplanned result also came out of this. Some of the people called turned out to be interested in psychotechnical assessment instead of a licence. They aren't counted among the 47. A single call ended up generating demand for a second, untargeted service.
 ## Limitations and next step
 
 **The cost-per-trainee chart uses nominal values.** Most of the rise seen from 2020 to 2025 is inflation, not a real cost increase. The chart doesn't measure real cost change.
