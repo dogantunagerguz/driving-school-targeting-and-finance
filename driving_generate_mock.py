@@ -26,22 +26,16 @@ amounts (and anything computed from them) stay meaningful.
 Dates are left untouched throughout, including date of birth. A bare date
 next to a fake name identifies no one.
 
-Set the file paths below, then run.
+Optional original-data tool: run with --input-dir and --out-dir.
+For the standalone synthetic demo, run python scripts/setup_demo.py instead.
 """
 
+import argparse
 import os
+from pathlib import Path
 import random
 
 from openpyxl import Workbook, load_workbook
-
-# ---- File paths (edit these) --------------------------------------------
-
-TRAINEE_PATH   = r"C:\Users\dogan\OneDrive\Masaüstü\Power BI Project\İlt_ 2020-2025 MERKEZ VERİLERİ SON HALİ\Yıllık Kursiyer Listesi\Yıllık Kursiyer Listesi.xlsx"
-EXPENSE_PATH   = r"C:\Users\dogan\OneDrive\Masaüstü\Power BI Project\İlt_ 2020-2025 MERKEZ VERİLERİ SON HALİ\Yıllık Gider Listesi\Gider Listesi.xlsx"
-EXAM_DEBT_PATH = r"C:\Users\dogan\OneDrive\Masaüstü\Power BI Project\İlt_ 2020-2025 MERKEZ VERİLERİ SON HALİ\Yıllık Genel Sınav ve Borç Listesi\Kursiyer Genel Sınav ve Borç Listesi.xlsx"
-INCOME_PATH    = r"C:\Users\dogan\OneDrive\Masaüstü\Power BI Project\İlt_ 2020-2025 MERKEZ VERİLERİ SON HALİ\Yıllık Gelir Listesi\Gelir Listesi.xlsx"
-OTHER_INCOME_PATH = r"C:\Users\dogan\OneDrive\Masaüstü\Power BI Project\İlt_ 2020-2025 MERKEZ VERİLERİ SON HALİ\Yıllık Diğer Gelirler\Diğer Gelirler.xlsx"
-OUT_DIR        = r"C:\Users\dogan\OneDrive\Masaüstü\Power BI Project\driving_mock"
 
 SEED = 20260726  # fixed so re-runs produce the same anonymization
 MONEY_FACTOR = 1.42  # every monetary value scales by this, same treatment as Etstur
@@ -187,6 +181,20 @@ def placeholder_column(headers, data, col_name):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--input-dir", type=Path, required=True,
+                        help="Folder containing the five original workbooks")
+    parser.add_argument("--out-dir", type=Path, required=True)
+    args = parser.parse_args()
+    source_dir = args.input_dir.expanduser().resolve()
+    OUT_DIR = args.out_dir.expanduser().resolve()
+    if source_dir == OUT_DIR:
+        parser.error("Choose an output directory different from the source directory.")
+    TRAINEE_PATH = source_dir / "Yıllık Kursiyer Listesi.xlsx"
+    EXPENSE_PATH = source_dir / "Gider Listesi.xlsx"
+    EXAM_DEBT_PATH = source_dir / "Kursiyer Genel Sınav ve Borç Listesi.xlsx"
+    INCOME_PATH = source_dir / "Gelir Listesi.xlsx"
+    OTHER_INCOME_PATH = source_dir / "Diğer Gelirler.xlsx"
     rng = random.Random(SEED)
     os.makedirs(OUT_DIR, exist_ok=True)
 

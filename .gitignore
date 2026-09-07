@@ -1,2 +1,8 @@
 **/.pbi/localSettings.json
 **/.pbi/cache.abf
+
+# Generated demo files
+demo-data/
+*.xlsx
+__pycache__/
+*.pyc

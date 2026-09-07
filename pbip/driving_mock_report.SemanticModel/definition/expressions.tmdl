@@ -1,6 +1,10 @@
+/// Folder created by scripts/setup_demo.py; configurable in Manage Parameters.
+expression DemoDataFolder = "" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	annotation PBI_ResultType = Text
+
 expression 'Ana-Gider Listesi' =
 		let
-		    Source = Excel.Workbook(File.Contents("C:\Users\dogan\OneDrive\Masaüstü\Power BI Project\driving_mock\Gider Listesi.xlsx"), null, true),
+		    Source = Excel.Workbook(File.Contents(DemoDataFolder & "/Gider Listesi.xlsx"), null, true),
 		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
 		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SN", Int64.Type}, {"TARİH", type date}, {"EVRAK NO", Int64.Type}, {"HESAP NO", type number}, {"İŞLEM AÇIKLAMASI", type text}, {"TUTAR", type number}}),
@@ -16,7 +20,7 @@ expression 'Ana-Gider Listesi' =
 
 expression 'Ana-Genel Sınav ve Borç Listesi' =
 		let
-		    Source = Excel.Workbook(File.Contents("C:\Users\dogan\OneDrive\Masaüstü\Power BI Project\driving_mock\Kursiyer Genel Sınav ve Borç Listesi.xlsx"), null, true),
+		    Source = Excel.Workbook(File.Contents(DemoDataFolder & "/Kursiyer Genel Sınav ve Borç Listesi.xlsx"), null, true),
 		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
 		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SN", Int64.Type}, {"ADAY NO", Int64.Type}, {"GRUBU", type text}, {"ADI SOYADI", type text}, {"TOPLAM BORÇ", Int64.Type}, {"ÖDENEN", type number}, {"KALAN", type number}, {"SINAV HARÇ TOPLAMI", type number}, {"ÖDENEN SINAV", type number}, {"KALAN_1", type number}, {"SERTİFİKA VERİLİŞ TARİHİ", type any}}),
@@ -36,7 +40,7 @@ expression 'Ana-Genel Sınav ve Borç Listesi' =
 
 expression 'Ana-Gelir Listesi' =
 		let
-		    Source = Excel.Workbook(File.Contents("C:\Users\dogan\OneDrive\Masaüstü\Power BI Project\driving_mock\Gelir Listesi.xlsx"), null, true),
+		    Source = Excel.Workbook(File.Contents(DemoDataFolder & "/Gelir Listesi.xlsx"), null, true),
 		    Sayfa1_Sheet = Source{[Item="Sayfa1",Kind="Sheet"]}[Data],
 		    #"Promoted Headers" = Table.PromoteHeaders(Sayfa1_Sheet, [PromoteAllScalars=true]),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SN", Int64.Type}, {"MAKBUZ NO", Int64.Type}, {"TAHSİLAT TARİHİ", type date}, {"ADAY NO", Int64.Type}, {"GRUBU", type text}, {"ADI SOYADI", type text}, {"TUTAR", Int64.Type}, {"TC NO", Int64.Type}, {"Yıl", Int64.Type}, {"Ay", Int64.Type}, {"Grup Numarası", Int64.Type}}),
@@ -52,7 +56,7 @@ expression 'Ana-Gelir Listesi' =
 
 expression 'Ana-Diğer Gelirler' =
 		let
-		    Source = Excel.Workbook(File.Contents("C:\Users\dogan\OneDrive\Masaüstü\Power BI Project\driving_mock\Diğer Gelirler.xlsx"), null, true),
+		    Source = Excel.Workbook(File.Contents(DemoDataFolder & "/Diğer Gelirler.xlsx"), null, true),
 		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
 		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SN", Int64.Type}, {"TARİH", type date}, {"EVRAK NO", Int64.Type}, {"HESAP NO", Int64.Type}, {"İŞLEM AÇIKLAMASI", type text}, {"TUTAR", type number}}),
@@ -69,7 +73,7 @@ expression 'Ana-Diğer Gelirler' =
 
 expression 'Ana-Kursiyer Listesi' =
 		let
-		    Source = Excel.Workbook(File.Contents("C:\Users\dogan\OneDrive\Masaüstü\Power BI Project\driving_mock\Yıllık Kursiyer Listesi.xlsx"), null, true),
+		    Source = Excel.Workbook(File.Contents(DemoDataFolder & "/Yıllık Kursiyer Listesi.xlsx"), null, true),
 		    Sayfa1_Sheet = Source{[Item="Sayfa1",Kind="Sheet"]}[Data],
 		    #"Promoted Headers" = Table.PromoteHeaders(Sayfa1_Sheet, [PromoteAllScalars=true]),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SN.", Int64.Type}, {"ADAY NO", Int64.Type}, {"ADI", type text}, {"SOYADI", type text}, {"Cinsiyet", type text}, {"GRUBU", type text}, {"ÖĞRENİM DURUMU", type text}, {"D.TARİHİ", type date}, {"S.SIN.", type text}, {"Yıl", Int64.Type}, {"Ay", Int64.Type}, {"Grup Numarası", Int64.Type}})

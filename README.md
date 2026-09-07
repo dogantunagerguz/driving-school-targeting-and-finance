@@ -1,5 +1,8 @@
 # Driving School Targeting and Financial Report
 
+
+[Run the public demo](#run-the-public-demo) — synthetic sample data, no private files or API key required.
+
 | | |
 |---|---|
 | **Business impact** | Converts historic trainee records into a targeted licence-upgrade call list and unifies income and expense analysis. |
@@ -111,3 +114,31 @@ An unplanned result also came out of this. Some of the people called turned out 
 **Attribution for the enrolments isn't measured.** 8 people enrolled the month the report launched, but there's no way to show they wouldn't have enrolled without being called. The number is an observation, not a causal claim.
 
 **The data isn't published here.** This repository holds the code and the method, not the data. Monetary values in the screenshots are scaled. Category percentages are real.
+
+## Run the public demo
+
+The public demo uses **fully synthetic data**, generated locally without private files, credentials, or API requests. Demo figures are illustrative and do not reproduce the business results below.
+
+1. Download this repository (Code → Download ZIP) and extract it, or clone it.
+2. Install Python 3.10+ and a current Power BI Desktop for Windows with PBIP/TMDL support.
+3. Close the project in Power BI Desktop, then run these commands from the repository folder:
+
+```bash
+python -m pip install -r requirements.txt
+python scripts/setup_demo.py
+```
+
+4. Open `pbip/driving_mock_report.pbip` and select **Refresh**.
+
+The script writes the sample workbooks to `demo-data/` and updates the single `DemoDataFolder` Power Query parameter in the local project. If you move the repository, close Power BI Desktop and run the setup command again. To use another sample-data location, run `python scripts/setup_demo.py --data-dir "path/to/demo-data"`. You can also edit `DemoDataFolder` through **Transform data → Manage Parameters**.
+
+Python can generate the files on Windows, macOS, or Linux; opening the report requires [Power BI Desktop](https://learn.microsoft.com/en-us/power-bi/developer/projects/projects-overview). No Power BI Service workspace or cloud refresh setup is required for this local demo. If a map requests an online map service, the remaining report pages can still be reviewed offline.
+
+The sample is anchored to 2026. It contains invented identities and transactions, with matching keys across related tables. Existing screenshots and operational results describe the original project; their totals will differ from this demo.
+
+Run the automated source-data and relocation checks with:
+
+```bash
+python -m unittest discover -s tests -v
+```
+

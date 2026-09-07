@@ -13,7 +13,7 @@ queryGroup 'Ham Veri'
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["Ana-Gider Listesi","Ana-Genel Sınav ve Borç Listesi","Ana-Gelir Listesi","Ana-Diğer Gelirler","Gider Listesi","Genel Sınav ve Borç Listesi","Gelir Listesi","Diğer Gelirler","Kursiyer Listesi","Ana-Kursiyer Listesi","Aday Numara Köprüsü"]
+annotation PBI_QueryOrder = ["DemoDataFolder","Ana-Gider Listesi","Ana-Genel Sınav ve Borç Listesi","Ana-Gelir Listesi","Ana-Diğer Gelirler","Gider Listesi","Genel Sınav ve Borç Listesi","Gelir Listesi","Diğer Gelirler","Kursiyer Listesi","Ana-Kursiyer Listesi","Aday Numara Köprüsü"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
