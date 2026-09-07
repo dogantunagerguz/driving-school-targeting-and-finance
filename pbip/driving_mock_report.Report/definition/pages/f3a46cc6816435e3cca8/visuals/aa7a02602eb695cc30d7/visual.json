@@ -27,8 +27,8 @@
                 }
               },
               "queryRef": "Genel Sınav ve Borç Listesi.Sertifika Alamayan Kişi Sayısı",
-              "nativeQueryRef": "Number of Uncertified",
-              "displayName": "Number of Uncertified",
+              "nativeQueryRef": "Not Certified",
+              "displayName": "Not Certified",
               "format": "G"
             }
           ]

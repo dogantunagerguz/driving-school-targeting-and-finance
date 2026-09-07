@@ -4,6 +4,8 @@ Four report pages, built in Power BI. Candidate names and phone numbers are anon
 
 These screenshots document the original report, not the synthetic public demo. The licence-upgrade funnel (200 contacts → 47 interested → 12 enrolled) and the separate 8-enrolment launch-month observation are defined under [Numbers](../README.md#numbers). The screenshots do not establish their reporting periods or whether the enrolment counts overlap.
 
+**Presentation QA:** In the downloadable PBIP, the lower trainee KPI reads **Not Certified**, and the nine-category expense pie has been replaced by a descending horizontal bar with direct value labels. These changes remove the truncated card caption and ellipsized expense legend visible in the earlier screenshots without changing the underlying measures.
+
 ---
 
 ## Decomposition Tree for Potentials
