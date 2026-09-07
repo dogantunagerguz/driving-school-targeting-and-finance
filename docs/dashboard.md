@@ -2,6 +2,8 @@
 
 Four report pages, built in Power BI. Candidate names and phone numbers are anonymized. Monetary values in the Financial Overview page are scaled; category percentages are real.
 
+These screenshots document the original report, not the synthetic public demo. The licence-upgrade funnel (200 contacts → 47 interested → 12 enrolled) and the separate 8-enrolment launch-month observation are defined under [Numbers](../README.md#numbers). The screenshots do not establish their reporting periods or whether the enrolment counts overlap.
+
 ---
 
 ## Decomposition Tree for Potentials

@@ -100,24 +100,34 @@ Drilling through from a segment leads to a detail table carrying the trainee's g
 
 ## Numbers
 
-Out of 200 targeted contacts reached through the system, 47 expressed direct interest in enrolling for a new licence class (~23.5% lead interest rate). Of those interested, 12 have actively enrolled and are currently undergoing training (a 25.5% conversion from intent to enrolment, representing an overall 6% end-to-end sales conversion).
+The reported licence-upgrade funnel contains **200 targeted contacts, 47 expressions of interest, and 12 enrolments**. Its reporting period and snapshot date are not specified in the available records. These are reported observations, not current live totals or results from the public demo.
 
-All three figures are tracked deliberately because the funnel stages matter: 200 is reach, 47 is qualified intent, and 12 is realized business revenue. The progression proves that the rule-based segmentation is actively surfacing high-propensity leads rather than cold contacts.
+| Metric | Count | Denominator | Rate |
+|---|---:|---|---:|
+| Targeted contacts reached | 200 | Base of the reported funnel | — |
+| Expressed interest in a new licence class | 47 | 200 targeted contacts | 23.50% |
+| Enrolled after expressing interest | 12 | 47 interested contacts | 25.53% |
+| Contact-to-enrolment conversion | 12 | 200 targeted contacts | 6.00% |
+
+A separate launch-month note reports **8 enrolments in the month the report launched**. The calendar month and whether those 8 are included in the 12 above are not documented. The counts therefore cannot be reconciled into a time series or a combined total.
+
+Enrolment is a count of people, not a revenue amount. The figures describe the observed funnel; they do not establish how many enrolments were caused by the calls.
 
 An unplanned result also came out of this. Some of the people called turned out to be interested in psychotechnical assessment instead of a licence. They aren't counted among the 47. A single call ended up generating demand for a second, untargeted service.
+
 ## Limitations and next step
 
 **The cost-per-trainee chart uses nominal values.** Most of the rise seen from 2020 to 2025 is inflation, not a real cost increase. The chart doesn't measure real cost change.
 
 **The data transformation was done in Excel.** This was the first Power BI work I did with real data, and the group-parsing step was done in Excel rather than Power Query. As a result, that step has to be repeated by hand on every update. The right approach would have been to do it in Power Query; the next version will.
 
-**Attribution for the enrolments isn't measured.** 8 people enrolled the month the report launched, but there's no way to show they wouldn't have enrolled without being called. The number is an observation, not a causal claim.
+**Attribution for the enrolments isn't measured.** Neither the 12-enrolment funnel nor the separate 8-enrolment launch-month observation shows how many people would have enrolled without being called. Their scope and missing period information are documented under [Numbers](#numbers).
 
 **The data isn't published here.** This repository holds the code and the method, not the data. Monetary values in the screenshots are scaled. Category percentages are real.
 
 ## Run the public demo
 
-The public demo uses **fully synthetic data**, generated locally without private files, credentials, or API requests. Demo figures are illustrative and do not reproduce the business results below.
+The public demo uses **fully synthetic data**, generated locally without private files, credentials, or API requests. Demo figures are illustrative and do not reproduce the [reported business results](#numbers).
 
 1. Download this repository (Code → Download ZIP) and extract it, or clone it.
 2. Install Python 3.10+ and a current Power BI Desktop for Windows with PBIP/TMDL support.
@@ -141,4 +151,3 @@ Run the automated source-data and relocation checks with:
 ```bash
 python -m unittest discover -s tests -v
 ```
-
