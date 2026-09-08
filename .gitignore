@@ -1,8 +1,21 @@
+# Data
+*.xlsx
+*.xls
+*.csv
+*.pbix
+
+# Power BI local files
 **/.pbi/localSettings.json
 **/.pbi/cache.abf
 
 # Generated demo files
 demo-data/
-*.xlsx
+
+# Masked output
+mock/
+
+# Python
 __pycache__/
 *.pyc
+.venv/
+venv/
