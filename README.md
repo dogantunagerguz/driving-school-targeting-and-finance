@@ -84,6 +84,8 @@ SWITCH(
 
 Each trainee has one row, evaluated on their most recently obtained certificate.
 
+**Age means completed years at model refresh.** The `Yaş` calculated column compares the birth month and day with `TODAY()`, so someone born on 31 December 2005 is still 20 on 8 September 2026. Missing or future birth dates return blank and do not meet the age thresholds. For 29 February births, this model advances age on 1 March in non-leap years. Age and the dependent segments update when the model is refreshed.
+
 ## Expense categorization
 
 Expense records carried a description field but no category. Reading through the descriptions turned up recurring patterns, and nine categories were defined from keywords in that text. The classification runs in Power Query M, so it re-runs automatically on every refresh.
@@ -151,3 +153,11 @@ Run the automated source-data and relocation checks with:
 ```bash
 python -m unittest discover -s tests -v
 ```
+
+To check age boundaries in the actual DAX engine, generate a query from the current model expression:
+
+```bash
+python scripts/build_age_checks.py --output demo-data/age_checks.dax
+```
+
+Open the generated file, copy its contents into Power BI Desktop's **DAX query view**, and run it. An empty result means all 18 cases passed; any returned row shows an expected and actual age that differ. The cases cover birthdays at the 17, 20, 21 and 24 thresholds, year changes, leap-day birthdays, missing/future dates and age zero. This uses the model's actual formula with fixed test dates, rather than a separately maintained copy of the age calculation. The Python command generates the query; it does not execute or validate it in the DAX engine.
