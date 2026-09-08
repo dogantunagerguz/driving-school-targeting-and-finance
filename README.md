@@ -127,6 +127,10 @@ An unplanned result also came out of this. Some of the people called turned out 
 
 **The data isn't published here.** This repository holds the code and the method, not the data. Monetary values in the screenshots are scaled. Category percentages are real.
 
+## SQL evidence
+
+The [self-contained SQLite companion](sql/README.md) demonstrates completed-age targeting, distinct-candidate funnel calculations, monthly finance, expense ranking, and data-quality controls on invented records. Run `python sql/run_demo.py`; the repository's unit-test command also verifies it. Its 10 / 4 / 2 demo funnel is explicitly separate from the reported 200 / 47 / 12 snapshot and the separately scoped eight launch-month enrolments.
+
 ## Run the public demo
 
 The public demo uses **fully synthetic data**, generated locally without private files, credentials, or API requests. Demo figures are illustrative and do not reproduce the [reported business results](#numbers).
