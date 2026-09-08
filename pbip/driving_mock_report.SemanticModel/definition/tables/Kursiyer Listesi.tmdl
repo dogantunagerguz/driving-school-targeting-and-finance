@@ -181,7 +181,19 @@ table 'Kursiyer Listesi'
 
 		annotation SummarizationSetBy = Automatic
 
-	column Yaş = DATEDIFF('Kursiyer Listesi'[D.TARİHİ].[Date],TODAY(),YEAR)
+	column Yaş =
+			VAR BirthDate = 'Kursiyer Listesi'[D.TARİHİ]
+			VAR AsOfDate = TODAY()
+			VAR Years = YEAR(AsOfDate) - YEAR(BirthDate)
+			VAR BirthdayPending =
+			    MONTH(AsOfDate) < MONTH(BirthDate)
+			        || (MONTH(AsOfDate) = MONTH(BirthDate) && DAY(AsOfDate) < DAY(BirthDate))
+			RETURN
+			    IF(
+			        ISBLANK(BirthDate) || BirthDate > AsOfDate,
+			        BLANK(),
+			        Years - IF(BirthdayPending, 1, 0)
+			    )
 		formatString: 0
 		lineageTag: 72527445-201a-4487-bc40-8cf9147db27a
 		summarizeBy: sum
