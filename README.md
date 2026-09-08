@@ -129,8 +129,7 @@ An unplanned result also came out of this. Some of the people called turned out 
 
 ## SQL evidence
 
-The [self-contained SQLite companion](sql/README.md) demonstrates completed-age targeting, distinct-candidate funnel calculations, monthly finance, expense ranking, and data-quality controls on invented records. Run `python sql/run_demo.py`; the repository's unit-test command also verifies it. Its 10 / 4 / 2 demo funnel is explicitly separate from the reported 200 / 47 / 12 snapshot and the separately scoped eight launch-month enrolments.
-
+The [source-linked SQL companion](sql/README.md) loads the same five fully synthetic workbooks used by the Power BI demo: **48 candidates, 48 debt accounts, 48 tuition receipts, 648 expense rows, and 72 other-income rows**. Raw, staging, targeting, finance, debt, and validation layers are visible in SQL; the executed snapshot identifies 37 demo target candidates and reconciles every source. The reported **200 / 47 / 12** funnel is shown only as transparent arithmetic because its row-level source and period are not public; the separately scoped eight launch-month enrolments are not combined. See [executed results](sql/RESULTS.md) and the [data dictionary](sql/DATA_DICTIONARY.md).
 ## Run the public demo
 
 The public demo uses **fully synthetic data**, generated locally without private files, credentials, or API requests. Demo figures are illustrative and do not reproduce the [reported business results](#numbers).
