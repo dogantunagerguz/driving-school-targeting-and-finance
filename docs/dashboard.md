@@ -2,7 +2,7 @@
 
 Four report pages, built in Power BI. Candidate names and phone numbers are anonymized. Monetary values in the Financial Overview page are scaled; category percentages are real.
 
-These screenshots document the original report, not the synthetic public demo. The licence-upgrade funnel (200 contacts → 47 interested → 12 enrolled) and the separate 8-enrolment launch-month observation are defined under [Numbers](../README.md#numbers). The screenshots do not establish their reporting periods or whether the enrolment counts overlap.
+These screenshots document the original report, not the synthetic public demo. The licence-upgrade funnel (200 contacts → 47 interested → 12 enrolled) and the separate 8-enrolment launch-month observation are defined under [Numbers](story.md#numbers). The screenshots do not establish their reporting periods or whether the enrolment counts overlap.
 
 **Presentation QA:** In the downloadable PBIP, the lower trainee KPI reads **Not Certified**, and the nine-category expense pie has been replaced by a descending horizontal bar with direct value labels. These changes remove the truncated card caption and ellipsized expense legend visible in the earlier screenshots without changing the underlying measures.
 
@@ -24,7 +24,7 @@ Where the tree leads. Cohort, licence class, age, certification status, phone nu
 
 ![Trainees](trainees.png)
 
-Certification volume and outcomes across licence classes since 2020. The rising line is the cost-per-trainee trend, which the README notes is nominal, not adjusted for inflation. The bars on the right show how certification success rate varies by class.
+Certification volume and outcomes across licence classes since 2020. The rising line is the cost-per-trainee trend, which the [full story](story.md#limitations-and-next-step) notes is nominal, not adjusted for inflation. The bars on the right show how certification success rate varies by class.
 
 ## Financial Overview
 
