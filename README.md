@@ -2,7 +2,7 @@
 
 ![Dashboard](assets/dashboard.png)
 
-*Financial Overview — monetary values are scaled. [View all dashboard pages](docs/dashboard.md).*
+*Decomposition Tree for Potentials — segment → year → age band. [View all dashboard pages](docs/dashboard.md).*
 
 [Run the public demo](#run-the-public-demo) — synthetic sample data, no private files or API key required.
 
