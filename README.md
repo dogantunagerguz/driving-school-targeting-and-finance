@@ -1,5 +1,8 @@
 # Driving School Targeting and Financial Report
 
+![Power BI financial dashboard showing revenue, expenses, net profit, and expense categories](assets/dashboard-preview.png)
+
+*Financial Overview — monetary values are scaled. [View all dashboard pages](docs/dashboard.md).*
 
 [Run the public demo](#run-the-public-demo) — synthetic sample data, no private files or API key required.
 
