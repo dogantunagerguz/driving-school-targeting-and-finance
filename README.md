@@ -1,12 +1,17 @@
 # Driving School Targeting and Finance
 
+**Business question:** Which past trainees should staff contact next, and what do the school's records show about income, expenses and cost per trainee?
+
 ![Dashboard](assets/dashboard.png)
 
-**What it does:** Turns past trainee records into licence-upgrade call lists and combines income, expenses, and cost-per-trainee analysis.  
+I turned a request for commercial-licence candidates into a repeatable selection process, added motorcycle and car segments, and connected five separate source lists for financial analysis. Staff can choose a segment that fits available class capacity, drill through to contact details, and review spending across nine categories.
+
+**Operational use:** Prepare the source files, refresh the report, select a segment, and use the detail list for staff-led follow-up.
+
 **Tools:** Power BI · DAX · Power Query · Excel/VBA · Python · SQLite  
 **Status:** In operational use; manual refresh and Excel preparation step; source data private.
 
-[▶ Run the public demo](#run-the-public-demo) · [SQL companion](sql/) · [Full story](docs/story.md)
+[Decision workflow and evidence](docs/decision-workflow.md) · [▶ Run the public demo](#run-the-public-demo) · [SQL companion](sql/) · [Full story](docs/story.md)
 
 The cover shows the **Decomposition Tree**: segment → year → age band. [Explore all four dashboard pages](docs/dashboard.md).
 
