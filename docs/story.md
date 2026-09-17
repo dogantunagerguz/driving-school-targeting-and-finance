@@ -105,6 +105,20 @@ The user opens the segment they want to look at through a decomposition tree. If
 
 Drilling through from a segment leads to a detail table carrying the trainee's group, age, licence class, and phone number. Getting from analysis to a call takes two clicks.
 
+## Operational delivery notes
+
+### Author-reported engagement context
+
+My wider project-based BI work at Anadolu Egitim ve Turizm Ltd. Sti. covered driving-school, psychotechnical assessment and travel-agency operations. The following figures describe that shared engagement:
+
+| Area | Author-reported delivery context |
+|---|---|
+| Weekly reporting effort | Reduced from **7 to 2 hours** through standardised data preparation, reusable DAX measures and consolidated Power BI reporting. |
+| Requirements gathering | Worked with **four department managers** to gather reporting requirements. |
+| Deployment scope | Published reports and configured access permissions in Power BI Service across **three business lines**: driver training, psychotechnical assessment and travel services. |
+
+These figures describe the wider engagement and are reported by the project author. They are not separate results for each repository or outputs of the synthetic demos. The public material does not include timing logs or an exact before/after measurement period.
+
 ## Numbers
 
 The reported licence-upgrade funnel contains **200 targeted contacts, 47 expressions of interest, and 12 enrolments**. Its reporting period and snapshot date are not specified in the available records. These are reported observations, not current live totals or results from the public demo.
