@@ -114,7 +114,7 @@ My wider project-based BI work at Anadolu Egitim ve Turizm Ltd. Sti. covered dri
 | Area | Author-reported delivery context |
 |---|---|
 | Weekly reporting effort | Reduced from **7 to 2 hours** through standardised data preparation, reusable DAX measures and consolidated Power BI reporting. |
-| Requirements gathering | Worked with **four department managers** to gather reporting requirements. |
+| Requirements gathering | Worked with **three department managers** to gather reporting requirements. |
 | Deployment scope | Published reports and configured access permissions in Power BI Service across **three business lines**: driver training, psychotechnical assessment and travel services. |
 
 These figures describe the wider engagement and are reported by the project author. They are not separate results for each repository or outputs of the synthetic demos. The public material does not include timing logs or an exact before/after measurement period.
